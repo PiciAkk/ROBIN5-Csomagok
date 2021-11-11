@@ -1,4 +1,4 @@
 parancs = self.parancs
 if "szia" in parancs.lower() or "hello" in parancs.lower() or "köszöntelek" in parancs.lower():
-    print("Köszöntelek! ROBIN vagyok!")
+    self.beszed("Köszöntelek! ROBIN vagyok!")
     quit()
