@@ -7,4 +7,4 @@ def idojaras(city):
 
 parancs = self.parancs
 if "időjárás" in parancs.lower():
-    print(idojaras(city))
+    print(idojaras("Budapest"))
