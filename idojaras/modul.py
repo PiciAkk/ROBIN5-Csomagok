@@ -10,6 +10,7 @@ if "időjárás" in parancs.lower():
 
     observation = mgr.weather_at_place("Hungary, Budapest")
     w = observation.weather
+    temperature = w.temperature('celsius')['temp']
 
-    beszed(f"A Budapesti hőmérséklet {w.temperature("celsius")["temp"]} celsius fok")
+    beszed(f"A Budapesti hőmérséklet {temperature} celsius fok")
     quit()
