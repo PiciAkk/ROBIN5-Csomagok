@@ -10,12 +10,14 @@ def getCity():
 parancs = self.parancs
 beszed = self.beszed
 if "időjárás" in parancs.lower():
+    city = getCity()
+
     owm = pyowm.OWM("bc12083e70d2d22298c2df1cec7101d9")
     mgr = owm.weather_manager()
 
-    observation = mgr.weather_at_place(getCity())
+    observation = mgr.weather_at_place(city)
     w = observation.weather
     temperature = w.temperature('celsius')['temp']
 
-    beszed(f"A Budapesti hőmérséklet {temperature} celsius fok")
+    beszed(f"A {city}i hőmérséklet {temperature} celsius fok")
     quit()
