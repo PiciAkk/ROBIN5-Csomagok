@@ -5,7 +5,7 @@ parancs = self.parancs
 h = self.h
 hangFelismeres = self.hangFelismeres
 
-if "állítsd meg" in parancs.lower():
+if "állítsd meg" in parancs.lower() or "állítsd le" in parancs.lower():
     os.system("spotifycli --pause")
     beszed("Zene sikeresen leállítva")
     quit()
