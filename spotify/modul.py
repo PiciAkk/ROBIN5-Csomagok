@@ -7,5 +7,7 @@ hangFelismeres = self.hangFelismeres
 
 if "állítsd meg" in parancs.lower():
     os.system("spotifycli --pause")
+    quit()
 elif "indítsd el" in parancs.lower():
     os.system("spotifycli --play")
+    quit()
