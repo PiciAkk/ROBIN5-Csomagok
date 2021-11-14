@@ -1,5 +1,6 @@
 import os
 import json
+import re
 
 def smsKuldes(telefonszam, uzenet):
     os.system(f"""kdeconnect-cli --send-sms "{uzenet}" --destination {telefonszam} --device e3d5c6a284a0e008""")
@@ -19,6 +20,8 @@ if "üzenet" in parancs.lower() or "küld" in parancs.lower() or "ír" in paranc
         beszed("Kinek szeretnél üzenetet küldeni?")
         szemelynev = hangFelismeres(f"\nKinek szeretnél üzenetet küldeni? ")
         os.remove("hang.wav") # töröljük a (már elemzett) hangfájlt
+    elif bool(re.search("^küldj.*egy üzenetet$", parancs.lower())):
+        varos = h.stem(parancs.split()[1])[0] 
     else:
         # van személynév specifikálva
         szemelynev = parancs.split()[-1]
