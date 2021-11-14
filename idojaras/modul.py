@@ -21,9 +21,9 @@ if "időjárás" in parancs.lower() or "hőmérséklet" in parancs.lower() or "h
     owm = pyowm.OWM("bc12083e70d2d22298c2df1cec7101d9")
     mgr = owm.weather_manager()
 
-    observation = mgr.weather_at_place(varos)
-    w = observation.weather
-    homerseklet = w.temperature('celsius')['temp']
+    megfigyeles = mgr.weather_at_place(varos)
+    idojaras = megfigyeles.weather
+    homerseklet = idojaras.temperature('celsius')['temp']
 
     beszed(f"A {varos}i hőmérséklet {homerseklet} celsius fok")
     quit()
