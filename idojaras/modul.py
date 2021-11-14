@@ -14,16 +14,16 @@ hangFelismeres = self.hangFelismeres
 
 if "időjárás" in parancs.lower() or "hőmérséklet" in parancs.lower() or "hány fok van" in parancs.lower():
     if "milyen az időjárás" == parancs.lower() or "milyen a hőmérséklet" == parancs.lower() or "hány fok van" == parancs.lower():
-        city = getCity()
+        varos = getCity()
     else:
-        city = h.stem(parancs.split()[-1])[0]
+        varos = h.stem(parancs.split()[-1])[0]
 
     owm = pyowm.OWM("bc12083e70d2d22298c2df1cec7101d9")
     mgr = owm.weather_manager()
 
-    observation = mgr.weather_at_place(city)
+    observation = mgr.weather_at_place(varos)
     w = observation.weather
-    temperature = w.temperature('celsius')['temp']
+    homerseklet = w.temperature('celsius')['temp']
 
-    beszed(f"A {city}i hőmérséklet {temperature} celsius fok")
+    beszed(f"A {varos}i hőmérséklet {homerseklet} celsius fok")
     quit()
