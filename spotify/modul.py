@@ -9,7 +9,7 @@ if "állítsd meg" in parancs.lower() or "állítsd le" in parancs.lower():
     os.system("spotifycli --pause")
     beszed("Zene sikeresen leállítva")
     quit()
-elif "indítsd el" in parancs.lower() or "játssz le" in parancs.lower() or "rakj be" in parancs.lower():
+elif "indíts el" in parancs.lower() "játssz le" in parancs.lower() or "rakj be" in parancs.lower():
     os.system("spotifycli --play")
     beszed("Zene sikeresen elindítva!")
     quit()
