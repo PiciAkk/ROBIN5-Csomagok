@@ -1,14 +1,17 @@
 import datetime
 import pytz
+import pycountry_convert as pc
+from googletrans import Translator
+import json
+import requests
+from geopy.geocoders import Nominatim 
 
-def getCity():
+def forditas(szoveg, forrasnyelv, celnyelv):
+    translator = Translator()
+    return translator.translate(szoveg, src=forrasnyelv, dest=celnyelv).text
+def varosLekerese():
     data = json.loads(requests.get("http://ipinfo.io/json").text)
     return data["city"]
-currentDT = datetime.datetime.now()
-currentTime = currentDT.strftime("%H:%M:%S")
-
-print(currentDT)
-print(currentTime)
 
 parancs = self.parancs
 beszed = self.beszed
@@ -16,11 +19,7 @@ h = self.h
 hangFelismeres = self.hangFelismeres
 
 if "mennyi az idő" in parancs.lower() or "hány óra van" in parancs.lower():
-    if "mennyi az idő" == parancs.lower() or "hány óra van" == parancs.lower():
-        varos = getCity()
-        ido = datetime.datetime.now().strftime("%H:%M:%S")
-    else:
-        varos = h.stem(parancs.split()[-1])[0]
-        idozona = pytz.timezone(varos)
-        ido = datetime.datetime.now(tz).strftime("%H:%M:%S")
+    varos = varosLekerese()
+    ido = datetime.datetime.now().strftime("%H:%M:%S")
     beszed(f"A {varos}i idő {ido}")
+    quit()
