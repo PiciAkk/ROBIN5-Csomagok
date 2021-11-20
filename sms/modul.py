@@ -18,9 +18,10 @@ if "üzenet" in parancs.lower() or "küld" in parancs.lower() or "ír" in paranc
     if "küldj egy üzenetet" == parancs.lower():
         # nincs személynév specifikálva
         beszed("Kinek szeretnél üzenetet küldeni?")
-        szemelynev = hangFelismeres(f"\nKinek szeretnél üzenetet küldeni? ")
+        szemelynev = hangFelismeres("Kinek szeretnél üzenetet küldeni? ")
         os.remove("hang.wav") # töröljük a (már elemzett) hangfájlt
     elif bool(re.search("^küldj.*egy üzenetet$", parancs.lower())):
+        # a személynév a parancs közepén van specifikálva
         varos = h.stem(parancs.split()[1])[0] 
     else:
         # van személynév specifikálva
@@ -28,8 +29,14 @@ if "üzenet" in parancs.lower() or "küld" in parancs.lower() or "ír" in paranc
     stemmedSzemelynev = h.stem(szemelynev)[0]
     telefonszam = telefonszamLekeres(stemmedSzemelynev, kontaktok)
     beszed(f"Mit küldjek el {szemelynev}?")
-    uzenet = hangFelismeres(f"\nMit küldjek el {szemelynev}? ")
+    uzenet = hangFelismeres(f"Mit küldjek el {szemelynev}? "))
     os.remove("hang.wav") # töröljük a (már elemzett) hangfájlt
-    smsKuldes(telefonszam, uzenet)
-    beszed("Üzenet sikeresen elküldve...")
+    beszed(f"Biztosan elküldjem az üzenetet ({uzenet}) {szemelynev}?")
+    elkuldjemE = hangFelismeres(f"Biztosan elküldjem az üzenetet ({uzenet}) {szemelynev}? ")
+    os.remove("hang.wav") # töröljük a (már elemzett) hangfájlt
+    if elkuldjemE.lower() == "igen":
+        smsKuldes(telefonszam, uzenet)
+        beszed("Üzenet sikeresen elküldve...")
+    else:
+        beszed("Üzenet küldése megszakítva...")
     quit()
