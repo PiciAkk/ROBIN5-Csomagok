@@ -1,9 +1,12 @@
 import requests
 import os
 import re
+import json
 
+def bicikliBerles(bicikli):
+    felhasznalo.rentBike()
 def legkozelebbiAllomas(allomas):
-    return Budapest.getNearestStation()
+    return Budapest.getNearestStationByAddress(allomas)
 def OpenBubiTelepites():
     openbubiFajl = open("fuggosegek/openbubi.py", "w+")
     openbubiFajl.write(requests.get("https://raw.githubusercontent.com/PiciAkk/OpenBubi/main/openbubi.py").text)
@@ -34,11 +37,20 @@ if "bérlés" in parancs.lower() or "béreld" in parancs.lower() or "bérelj" in
         os.remove("hang.wav") # töröljük a (már elemzett) hangfájlt
         bicikliSzama.replace(" ", "")
 
-        beszed(f"Biztosan kibéreljem a biciklit ezzel a számmal: {bicikliSzama}?")
-        kibereljemE = hangFelismeres(f"Biztosan kibéreljem a biciklit ezzel a számmal: {bicikliSzama}? ")
-        os.remove("hang.wav") # töröljük a (már elemzett) hangfájlt
+    beszed(f"Biztosan kibéreljem a biciklit ezzel a számmal: {bicikliSzama}?")
+    kibereljemE = hangFelismeres(f"Biztosan kibéreljem a biciklit ezzel a számmal: {bicikliSzama}? ")
+    os.remove("hang.wav") # töröljük a (már elemzett) hangfájlt
+    if kibereljemE.lower() == "igen":
+        bicikliBerles(bicikliSzama)
+        beszed("Bicikli sikeresen kibérelve...")
+    else:
+        beszed("Bérlés megszakítva...")
+    quit()
 elif "MOL Bubi" in parancs and "legközelebbi" in parancs.lower() and "állomás" in parancs.lower():
-    if "mi a legközelebbi állomás" in parancs.lower() or "mi a legközelebbi mol bubi állomás" in parancs.lower():
-        a     
-    beszed(f"A legközelebbi állomás a {legkozelebbiAllomas()}")
-quit()
+    if "mi a legközelebbi mol bubi állomás" == parancs.lower():
+        beszed("Hol tartózkodsz most?")
+        jelenlegiLokacio = hangFelismeres("Hol tartózkodsz most? ")
+        os.remove("hang.wav") # töröljük a (már elemzett) hangfájlt
+        allomas = legkozelebbiAllomas(jelenlegiLokacio)
+    beszed(f"A legközelebbi állomás a {allomas}")
+    quit()
