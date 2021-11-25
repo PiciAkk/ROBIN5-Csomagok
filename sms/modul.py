@@ -29,7 +29,7 @@ if "üzenet" in parancs.lower() or "küld" in parancs.lower() or "ír" in paranc
     stemmedSzemelynev = h.stem(szemelynev)[0]
     telefonszam = telefonszamLekeres(stemmedSzemelynev, kontaktok)
     beszed(f"Mit küldjek el {szemelynev}?")
-    uzenet = hangFelismeres(f"Mit küldjek el {szemelynev}? "))
+    uzenet = hangFelismeres(f"Mit küldjek el {szemelynev}? ")
     os.remove("hang.wav") # töröljük a (már elemzett) hangfájlt
     beszed(f"Biztosan elküldjem az üzenetet ({uzenet}) {szemelynev}?")
     elkuldjemE = hangFelismeres(f"Biztosan elküldjem az üzenetet ({uzenet}) {szemelynev}? ")
