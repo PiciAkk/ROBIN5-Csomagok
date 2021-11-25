@@ -40,3 +40,4 @@ if "üzenet" in parancs.lower() or "küld" in parancs.lower() or "ír" in paranc
     else:
         beszed("Üzenet küldése megszakítva...")
     quit()
+    # mindig ki kell itt lépni, mert nem szeretnénk, hogy a program elmenjen a `Parancs nem található` üzenetig
